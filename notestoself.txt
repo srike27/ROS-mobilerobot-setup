@@ -1,0 +1,22 @@
+Before working on navigation on any robot first look to check the range sensors, odometry and localization. Only if these three work properly the robot navigation would.
+
+///////////////////////////
+/////  Odometry tests:
+///////////////////////////
+
+rotation test:
+	1)Open up rviz set to odom frame
+	2)keep the decay time of the laser scanner as high as possible
+	3)perform an inplace rotation
+	4)check how closely the laser scan matches the previous on subsequent rotations
+	5)make sure that the scans are not off by more than a degree or two
+
+translation test:
+	1)Set up rviz with the robot a few metres away from a wall
+	2)set a high decay time for the laser scans
+	3)Check the thickness in the point cloud
+	4)if the thickness is just a few centimeters the translation odometry is fine
+
+Running these two tests would indicate that your odometry is fine and we could move on to the next more important aspect of robot setup
+
+
