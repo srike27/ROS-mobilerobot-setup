@@ -1,0 +1,62 @@
+rviz is the visualization tool
+
+to add lasercan data go to terminal put rostopic list fnd the laserscan topic
+
+go back to rviz and add the topic to your map
+
+then in your rviz open up map and pu the map topic
+
+explore the entire map
+we are doing SLAM
+for laserscan we use the gmapping package
+
+configuring the package
+-- the gmapping contains a node called slam-gmapping
+
+
+the gmapping node subscribes to the laserscan data and the tf data
+the map is published to a topic called map
+
+the message type of this map is occupancy grid. occupancy is represented as an integer where 0 is completely empty and 100 is completely full and -1 if unknown
+grey-0
+black -100
+
+
+after making map is saving map
+
+run rosrun map_server map_saver -f /<location>/<mapname>
+
+map is saved in 2 files <mapname>.pgm and <mapname>.yaml. the yaml file contains meta data information about the map.
+the pgm is an image of the program
+it can be opened using gimp
+
+once the map is saved it can be provided to other nodes for use for localization and pathplann
+
+Providing maps
+
+inorder to get a map a static_map service has to be called(nav_msgs/GetMap)
+
+the data is published into 2 topics
+map_metadata(nav_msgs/MapMetaData): provides the map meta data
+map(nav_msgs/OccupancyGrid): provides the occupany grid of the map
+
+
+command to launch the map server is
+
+rosrun map_server map_server <map_filename>.yaml
+
+you can always rostopic echo either map_metadata and map topics
+
+inorder to build a proper map 
+1) good laser data
+2) good odometry data
+
+for slam to work properly we need to provide two transforms to the slam_gmapping node 
+the laser_link --> base_link 
+and the base_link --> odom provided by the odometry system
+
+the robot needs access to this information at all times and hence it is published into a tf tree or a transform tree
+
+running rosrun tf view_frames 
+creates a pdf containg the tree in which all the links are connected to the base_link and the base_link is transformed to the odom frame
+

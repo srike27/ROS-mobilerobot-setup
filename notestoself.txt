@@ -1,5 +1,15 @@
 Before working on navigation on any robot first look to check the range sensors, odometry and localization. Only if these three work properly the robot navigation would.
 
+
+///////////////////////////
+/// Sensor Feed
+///////////////////////////
+
+laser scan test:
+	1)run rviz and check whether the pointcloud matches with the laser scanner face
+	2)set high decay time for pointcloud and move in front of the scanner
+	3)run back and check if you are there in the scan
+
 ///////////////////////////
 /////  Odometry tests:
 ///////////////////////////
@@ -19,4 +29,9 @@ translation test:
 
 Running these two tests would indicate that your odometry is fine and we could move on to the next more important aspect of robot setup
 
+////////////////////////////
+///// Localization tests
+////////////////////////////
+
+Assuming the odometry and the laser scans work properly
 

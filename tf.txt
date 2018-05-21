@@ -1,0 +1,5 @@
+Transforms
+
+In order to be use the laser. We need to tell the robot where the laser is in the robot. consider the robot to be a base_link and the laser to be at laser_link the data from the laserscan is in the frame of the laser frame. to convert them to the base_link frame we use the tf.
+
+
